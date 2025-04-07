@@ -68,6 +68,7 @@ plt.ylabel('Number of samples')
 plt.title('Class Distribution in Training Set')
 plt.show()
 
+
 # Plot some sample images from each class
 fig, axes = plt.subplots(1, 5, figsize=(15, 5))
 for i in range(5):
@@ -180,4 +181,22 @@ combined_gen = ImageDataGenerator(
 combined_images = get_augmented_images(combined_gen, train_dir)
 
 
+## also plot class labels for val and test (Question 2)
+# --- Validation set class distribution ---
+val_labels_batch = val_labels  # already loaded from earlier
+val_class_counts = {label: sum(val_labels_batch == i) for i, label in enumerate(class_labels)}
+plt.bar(val_class_counts.keys(), val_class_counts.values())
+plt.xlabel('Class')
+plt.ylabel('Number of samples')
+plt.title('Class Distribution in Validation Set')
+plt.show()
+
+# --- Test set class distribution ---
+test_labels_batch = test_labels  # already loaded from earlier
+test_class_counts = {label: sum(test_labels_batch == i) for i, label in enumerate(class_labels)}
+plt.bar(test_class_counts.keys(), test_class_counts.values())
+plt.xlabel('Class')
+plt.ylabel('Number of samples')
+plt.title('Class Distribution in Test Set')
+plt.show()
 
